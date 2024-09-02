@@ -5,7 +5,7 @@ import { Textarea } from "../../components/Textarea";
 import { Input } from "../../components/Input";
 import { MultiFilepnd } from "@/app/components/MultiFilepond";
 
-export default function newProduct() {
+export default function NewProduct() {
   const [imgUrl, setImgUrl] = useState<string>("");
 
   return (
