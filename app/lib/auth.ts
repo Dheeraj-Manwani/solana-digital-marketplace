@@ -24,7 +24,6 @@ export const authConfig = {
   callbacks: {
     session: ({ session, token }: any): session => {
       const newSession: session = session as session;
-      console.log("session and token inside auth::::::", session, token);
       if (newSession.user && token.uid) {
         // @ts-ignore
         newSession.user.uid = token.uid ?? "";
@@ -32,12 +31,6 @@ export const authConfig = {
       return newSession!;
     },
     async jwt({ token, account, profile }: any) {
-      console.log(
-        "{ token, account, profile }::::::::::",
-        token,
-        account,
-        profile
-      );
       const user = await db.user.findFirst({
         where: {
           email: token?.email ?? "",
@@ -45,18 +38,11 @@ export const authConfig = {
       });
       if (user) {
         token.uid = user.id;
+        token.publicKey = user.publicKey;
       }
       return token;
     },
     async signIn({ user, account, profile, email, credentials }: any) {
-      console.log(
-        "{ user, account, profile, email, credentials }:::::::::",
-        user,
-        account,
-        profile,
-        email,
-        credentials
-      );
       if (account?.provider === "google") {
         const email = user.email;
         if (!email) {

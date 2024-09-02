@@ -26,6 +26,8 @@ model User {
 model Product {
   id           Int       @id @default(autoincrement())
   title        String
+  cost         Int
+  payTo        String?
   description  String?
   images       Image[]
   video        String?

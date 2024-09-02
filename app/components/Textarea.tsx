@@ -8,7 +8,7 @@ export const Textarea = ({
 }: {
   label: string;
   value: string;
-  onChange: () => void;
+  onChange: any;
   placeholder?: string;
 }) => {
   return (
@@ -25,7 +25,7 @@ export const Textarea = ({
         className="block p-2.5 w-full text-sm rounded-lg border  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
       ></textarea>
     </div>
   );

@@ -4,26 +4,43 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "./Button";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
+import {
+  WalletDisconnectButton,
+  WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 export const Appbar = () => {
+  const { publicKey, signMessage } = useWallet();
   const session = useSession();
   const pathname = usePathname();
   const isActive = (path: string | undefined) => path === pathname;
+
+  async function signAndSend() {
+    if (!publicKey) {
+      return;
+    }
+    const message = new TextEncoder().encode(
+      "Sign in to project made by Dheeraj for Solana 100xdevs hackathon?"
+    );
+    const signature = await signMessage?.(message);
+    // const response = await axios.post(`${BACKEND_URL}/v1/user/signin`, {
+    //     signature,
+    //     publicKey: publicKey?.toString()
+    // });
+
+    // localStorage.setItem("token", response.data.token);
+  }
 
   return (
     <nav className=" bg-gray-900 fixed w-full z-20 top-0 start-0 border-b  border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a
-          href="https://flowbite.com/"
+          href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse w-10"
         >
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8"
-            alt="Flowbite Logo"
-          />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-            Flowbite
+            SolMart
           </span>
         </a>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse w-10">
@@ -44,6 +61,9 @@ export const Appbar = () => {
               Signin
             </Button>
           )}
+          {/* <div className="text-xl pr-4 pb-2">
+            {publicKey ? <WalletDisconnectButton /> : <WalletMultiButton />}
+          </div> */}
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
