@@ -1,10 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  WalletDisconnectButton,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { Textarea } from "@/app/components/Textarea";
 import { Input } from "@/app/components/Input";
 import { MultiFilepnd } from "@/app/components/MultiFilepond";

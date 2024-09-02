@@ -1,6 +1,6 @@
 "use client";
 
-import { getProductById, verifyTransactionSignature } from "@/actions";
+import { getProductById, verifyTransactionSignature } from "@/actions/index";
 import { FullProduct } from "@/app/components/FullProduct";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
