@@ -1,6 +1,5 @@
 import GoogleProvider from "next-auth/providers/google";
 import db from "@/app/db";
-import { Keypair } from "@solana/web3.js";
 
 import { Session } from "next-auth";
 

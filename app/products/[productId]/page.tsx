@@ -2,19 +2,10 @@
 
 import { getProductById, verifyTransactionSignature } from "@/actions";
 import { FullProduct } from "@/app/components/FullProduct";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-// import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { v4 as uuidv4 } from "uuid";
-import {
-  Connection,
-  PublicKey,
-  Transaction,
-  SystemProgram,
-} from "@solana/web3.js";
-// import { PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+import { PublicKey, Transaction, SystemProgram } from "@solana/web3.js";
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 
 export default function Products({
@@ -93,7 +84,6 @@ export default function Products({
   };
 
   useEffect(() => {
-    console.log("inside use effect");
     getProductById(Number(params.productId)).then((data) => {
       // getProductById(Number(params.productId)).then((data) => {
       if (data) {
@@ -110,7 +100,6 @@ export default function Products({
     });
   }, []);
 
-  console.log("product ::::::::: ", product);
   return (
     <section className=" bg-gray-900 pt-10 pb-56  w-full ">
       <FullProduct

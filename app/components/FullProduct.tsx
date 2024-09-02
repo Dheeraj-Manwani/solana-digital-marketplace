@@ -1,10 +1,8 @@
+"use client";
+
 import React from "react";
 import { Button } from "./Button";
-import {
-  WalletDisconnectButton,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 export const FullProduct = ({
   id,

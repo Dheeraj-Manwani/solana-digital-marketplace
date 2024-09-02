@@ -4,10 +4,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "./Button";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
-import {
-  WalletDisconnectButton,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 export const Appbar = () => {
@@ -15,22 +11,6 @@ export const Appbar = () => {
   const session = useSession();
   const pathname = usePathname();
   const isActive = (path: string | undefined) => path === pathname;
-
-  async function signAndSend() {
-    if (!publicKey) {
-      return;
-    }
-    const message = new TextEncoder().encode(
-      "Sign in to project made by Dheeraj for Solana 100xdevs hackathon?"
-    );
-    const signature = await signMessage?.(message);
-    // const response = await axios.post(`${BACKEND_URL}/v1/user/signin`, {
-    //     signature,
-    //     publicKey: publicKey?.toString()
-    // });
-
-    // localStorage.setItem("token", response.data.token);
-  }
 
   return (
     <nav className=" bg-gray-900 fixed w-full z-20 top-0 start-0 border-b  border-gray-600">
@@ -132,7 +112,7 @@ export const Appbar = () => {
                 href="/seller"
                 className={twMerge(
                   "block py-2 px-3 text-white bg-blue-700 md:hover:text-blue-500 rounded md:bg-transparent  md:p-0",
-                  isActive("/seller") ? "md:text-blue-500" : ""
+                  isActive("/seller/new") ? "md:text-blue-500" : ""
                 )}
               >
                 Sell
